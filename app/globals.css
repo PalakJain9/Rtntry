@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+    --font-roboto: 'Roboto', sans-serif;
+    --font-kalnia: 'Kalnia', cursive;
+  --mesh-color: hsla(0, 100%, 50%, 1);
+
+  --mesh-gradients:
+    radial-gradient(at 40% 20%, rgb(255, 198, 149) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgb(133, 235, 253) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgb(252, 167, 195) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, rgb(156, 152, 252) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, rgb(252, 157, 184) 0px, transparent 50%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  font-family: var(--font-roboto);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-kalnia);
+  font-weight: 500;
+}
+
+.mesh {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--mesh-color);
+  background-image: var(--mesh-gradients);
+  background-size: 100% 100%;
+  background-position: 0% 50%;}
+
+.universalPadding {
+  @apply px-[1.5rem] md:px-[2rem] lg:px-[5rem]
+}
