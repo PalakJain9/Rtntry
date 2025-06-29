@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Abril_Fatface, Roboto, Kalnia } from 'next/font/google';
+import { Roboto, Kalnia } from 'next/font/google';
 import '../app/globals.css'; 
 
 const roboto = Roboto({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-roboto',
-  display: 'swap',
-})
-
-const abrilFatface = Abril_Fatface({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-abril-fatface',
   display: 'swap',
 })
 
@@ -36,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${abrilFatface.variable} ${roboto.variable} ${kalnia.variable} antialiased`}
+        className={`${roboto.variable} ${kalnia.variable} antialiased`}
       >
         {children}
       </body>
