@@ -15,7 +15,7 @@ const About = () => {
                     About us
                 </h1>
                 <div className="text-md md:text-lg lg:text-xl w-full lg:w-3/4">
-                    Derived from Sanskrit, "Ratna” means jewel, and "Traya” means three — together forming Ratnatray, the Three Jewels.<br /><br />
+                    Derived from Sanskrit, &quot;Ratna&quot; means jewel, and &quot;Traya&quot; means three — together forming Ratnatray, the Three Jewels.<br /><br />
                     
                     In its ancient origin, Ratnatray reflects the spiritual triad of:
                     Right Vision, Right Knowledge, and Right Conduct<br /><br />
@@ -26,7 +26,7 @@ const About = () => {
 
                     When we fuel them,
                     we begin to unlock something beautiful — a life that feels true, light, and uniquely ours.
-                    It is in these simple moments of care and connection that we move closer to the life we dream of — one rooted in purpose, peace, and genuine joy. <br />And that's excatly our aim; to bring to you highly curated blogs and tips to help you achieve the same.<br /><br />
+                    It is in these simple moments of care and connection that we move closer to the life we dream of — one rooted in purpose, peace, and genuine joy. <br />And that&apos;s excatly our aim; to bring to you highly curated blogs and tips to help you achieve the same.<br /><br />
                 </div>
             </div>
         </div>
