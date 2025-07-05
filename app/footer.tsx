@@ -23,7 +23,7 @@ export default function Footer () {
           className="w-full lg:w-2/5 flex flex-col justify-start items-start lg:items-end gap-[1rem]"
         >
           <Link
-            href="#pinterest"
+            href="https://pinterest.com/theratnatraystore/"
             className="linkHoverUnderline"
           > 
             <p>PINTEREST</p>

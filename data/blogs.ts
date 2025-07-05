@@ -13,11 +13,5 @@ export const blogs: Blog[] = [
     title: 'Are You Journaling All Wrong When You Feel Low?',
     body: journalingLow,
     image: '/JOURNAL.png',
-  },
-  {
-    slug: 'how-to-start-your-day-right',
-    title: 'How to Start Your Day Right',
-    body: journalingLow,
-    image: '/JOURNAL.png',
-  },
+  }
 ];

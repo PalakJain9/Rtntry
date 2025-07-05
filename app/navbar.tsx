@@ -25,7 +25,7 @@ export default function Navbar () {
           </Link>
 
            <Link
-              href="#pinterest"
+              href="https://pinterest.com/theratnatraystore/"
               className="linkHoverUnderline"
               > 
               <p>PINTEREST</p>
