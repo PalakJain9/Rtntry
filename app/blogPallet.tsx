@@ -10,7 +10,7 @@ const BlogPallet = () => {
             id='blog'
             className='flex flex-col items-center w-[100vw] h-full universalPadding gap-[1.5rem] md:gap-[2rem] lg:gap-[3rem]'
         >
-            <h1 className='text-xl md:text-2xl lg:text-6xl'>
+            <h1 className='text-2xl lg:text-6xl'>
                 The blogs every IT GIRL reads to level up.
             </h1>
 

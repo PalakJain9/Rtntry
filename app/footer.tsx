@@ -10,7 +10,7 @@ export default function Footer () {
           className="flex flex-col justify-start items-start gap-[0.5rem] text-lg lg:text-xl w-full lg:w-3/5"
         >
           <h1
-            className="text-4xl md:text-[6xl] lg:text-8xl"
+            className="text-5xl md:text-6xl lg:text-8xl"
           >
             ratnatray.
           </h1>
