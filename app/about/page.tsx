@@ -26,7 +26,7 @@ const About = () => {
 
                     When we fuel them,
                     we begin to unlock something beautiful — a life that feels true, light, and uniquely ours.
-                    It is in these simple moments of care and connection that we move closer to the life we dream of — one rooted in purpose, peace, and genuine joy. <br />And that&apos;s excatly our aim; to bring to you highly curated blogs and tips to help you achieve the same.<br /><br />
+                    It is in these simple moments of care and connection that we move closer to the life we dream of — one rooted in purpose, peace, and genuine joy. <br />And that&apos;s excatly our aim; to bring to you highly curated blogs and tips to help you achieve the same.
                 </div>
             </div>
         </div>

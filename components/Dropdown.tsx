@@ -24,7 +24,7 @@ export default function DropdownMenuDemo() {
                 BLOGS
             </DropdownMenuItem></Link>
             <Link
-                href="#pinterest"
+                href="https://pinterest.com/theratnatraystore/"
                 className="w-full"
             > 
             <DropdownMenuItem>
