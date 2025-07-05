@@ -3,7 +3,7 @@ import Navbar from "../navbar"
 const About = () => {
     return (
         <div
-            className="greyMesh flex flex-col justify-center items-start w-[100vw] min-h-[100vh] overflow-x-hidden lg:overflow-y-hidden gap-[3rem]"
+            className="greyMesh flex flex-col justify-center items-start w-[100vw] min-h-screen overflow-x-hidden lg:overflow-y-hidden gap-[3rem]"
         >
             <Navbar />
             <div

@@ -100,5 +100,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .positionFromtopAbout {
-  @apply absolute top-[5rem] md:top-[0rem] md:static
+  @apply absolute top-[7rem] md:top-[0rem] md:static
 }
