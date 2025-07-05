@@ -58,7 +58,7 @@ export default async function BlogPage(props: { params: Promise<BlogPageProps['p
       <div className="positionFromtop w-full flex flex-col justify-center items-center gap-[3rem]">
         <div className="blogPagePadding w-full flex flex-col gap-[3rem] justify-center items-start">
           <h1 className="text-2xl md:text-3xl lg:text-5xl">{blog.title}</h1>
-          <div className="text-justify text-lg md:text-lg">
+          <div className="text-justify text-lg">
             {/* Inject processed HTML content */}
             <div
               className="prose whitespace-pre-wrap"

@@ -10,11 +10,11 @@ const About = () => {
                 className="positionFromtopAbout w-full h-full universalPadding flex flex-col justify-center items-start gap-[2rem]"
             >
                 <h1
-                    className="text-4xl md:text-6xl lg:text-9xl w-full lg:w-1/2 text-black"
+                    className="text-5xl md:text-6xl lg:text-9xl w-full lg:w-1/2 text-black"
                 >
                     About us
                 </h1>
-                <div className="text-md md:text-lg lg:text-xl w-full lg:w-3/4">
+                <div className="text-lg lg:text-xl w-full lg:w-3/4">
                     Derived from Sanskrit, &quot;Ratna&quot; means jewel, and &quot;Traya&quot; means three — together forming Ratnatray, the Three Jewels.<br /><br />
                     
                     In its ancient origin, Ratnatray reflects the spiritual triad of:
