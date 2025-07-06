@@ -14,7 +14,7 @@ const Hero = () => {
                 <h1
                     className="text-6xl md:text-7xl lg:text-9xl/28 w-3/4 text-black"
                 >
-                    Attuning body, mind and soul to live a life you deserve.
+                    Attune body, mind and soul to live a life you deserve.
                 </h1>
             </div>
         </section>
