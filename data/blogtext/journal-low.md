@@ -1,4 +1,4 @@
-Hey there, lovely humans! Ever find yourself in a situation when everything feels a bit… meh? We've all been there. And while journaling about your goals, daily happenings, or affirmations is fantastic, I stumbled upon a journaling superpower that totally upped my game.
+Hey there, lovely humans! Ever find yourself in a situation when everything feels a bit… meh? We've all been there. While journaling about your goals, daily happenings, or affirmations is fantastic, I stumbled upon a journaling superpower that totally upped my game.
 
 For me, whenever I was in the thick of it – feeling overwhelmed, heartbroken, or just plain stuck – I’d grab my journal and dive deep. I’d ask myself: How am I truly feeling? Why am I feeling this way? And what can I do to shift things? This deep dive into my emotional landscape became my personal "aha!" moment factory. It helped me pinpoint those underlying fears and old traumas I didn’t even know were lurking. And guess what? Once you see them, you can start healing them!
 
