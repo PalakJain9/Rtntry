@@ -11,14 +11,19 @@ const roboto = Roboto({
 
 const kalnia = Kalnia({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'], // Choose weights as needed
+  weight: ['400', '500', '600', '700'],
   variable: '--font-kalnia',
   display: 'swap',
 })
 
+const PINTEREST_KEY = process.env.PINTEREST_DOMAIN_VERIFY_KEY as string;
+
 export const metadata: Metadata = {
   title: "Ratnatray",
   description: "Ratnatray Blog",
+  other: {
+    'p:domain_verify': PINTEREST_KEY,
+  }
 };
 
 export default function RootLayout({
