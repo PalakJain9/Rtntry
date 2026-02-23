@@ -1,4 +1,3 @@
-import { blogs } from '@/data/blogs';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { remark } from 'remark';
@@ -7,6 +6,7 @@ import remarkGfm from 'remark-gfm'; // For GitHub-flavored markdown
 import Navbar from '@/app/navbar';
 import Footer from '@/app/footer';
 import Link from 'next/link';
+import { db } from '@/lib/db';
 
 interface BlogPageProps {
   params: {
@@ -14,30 +14,39 @@ interface BlogPageProps {
   };
 }
 
-export async function generateStaticParams() {
-  return blogs.map((blog) => ({ slug: blog.slug }));
-}
-
 export async function generateMetadata(props: { params: Promise<BlogPageProps['params']> }): Promise<Metadata> {
   const params = await props.params;
   const slug = params.slug;
 
-  const blog = blogs.find((b) => b.slug === slug);
+  try {
+    const result = await db.query('SELECT * FROM blogs WHERE slug = $1', [slug]);
+    const blog = result.rows[0];
 
-  if (!blog) {
+    if (!blog) {
+      return { title: 'Blog Not Found' };
+    }
+
+    return { title: blog.title };
+  } catch (error) {
+    console.error('[BLOG_METADATA]', error);
     return { title: 'Blog Not Found' };
   }
-
-  return { title: blog.title };
 }
 
 export default async function BlogPage(props: { params: Promise<BlogPageProps['params']> }) {
   const params = await props.params;
   const slug = params.slug;
 
-  const blog = blogs.find((b) => b.slug === slug);
+  try {
+    const result = await db.query('SELECT * FROM blogs WHERE slug = $1', [slug]);
+    const blog = result.rows[0];
 
-  if (!blog) {
+    if (!blog) {
+      return notFound();
+    }
+
+  } catch (error) {
+    console.error('[BLOG_PAGE]', error);
     return notFound();
   }
 

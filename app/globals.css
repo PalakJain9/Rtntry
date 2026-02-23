@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 
 :root {
-    --font-roboto: 'Roboto', sans-serif;
-    --font-kalnia: 'Kalnia', cursive;
+    --font-roboto: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-kalnia: 'Georgia', 'Times New Roman', serif;
   --mesh-color: hsla(0, 100%, 50%, 1);
   --grey-marble-color: hsla(0, 0%, 98%, 1);
 
