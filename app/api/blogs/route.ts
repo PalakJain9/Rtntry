@@ -68,16 +68,16 @@ export async function GET(request: Request) {
     return NextResponse.json(response);
   } catch (error) {
     console.error('[GET_BLOGS] Full error details:', {
-      message: error.message,
-      stack: error.stack,
-      code: error.code,
-      detail: error.detail
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      code: (error as any)?.code,
+      detail: (error as any)?.detail
     });
     
     return NextResponse.json(
       { 
         error: 'Internal server error',
-        details: error.message,
+        details: error instanceof Error ? error.message : String(error),
         blogs: [],
         pagination: null
       },
