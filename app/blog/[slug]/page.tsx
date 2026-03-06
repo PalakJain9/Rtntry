@@ -37,9 +37,11 @@ export default async function BlogPage(props: { params: Promise<BlogPageProps['p
   const params = await props.params;
   const slug = params.slug;
 
+  let blog: any = null;
+
   try {
     const result = await db.query('SELECT * FROM blogs WHERE slug = $1', [slug]);
-    const blog = result.rows[0];
+    blog = result.rows[0];
 
     if (!blog) {
       return notFound();
