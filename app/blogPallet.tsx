@@ -29,15 +29,26 @@ const BlogPallet = () => {
   const fetchBlogs = async (page: number = 1) => {
     try {
       setLoading(true);
+      console.log(`Fetching blogs for page ${page}...`);
       const response = await fetch(`/api/blogs?page=${page}&limit=15`);
-      if (response.ok) {
-        const data = await response.json();
-        setBlogs(data.blogs);
-        setPagination(data.pagination);
-        setCurrentPage(page);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('API Error:', errorData);
+        throw new Error(errorData.error || `HTTP ${response.status}`);
       }
+      
+      const data = await response.json();
+      console.log('API Response:', data);
+      
+      setBlogs(data.blogs || []);
+      setPagination(data.pagination);
+      setCurrentPage(page);
     } catch (error) {
       console.error('Error fetching blogs:', error);
+      // Set empty state on error
+      setBlogs([]);
+      setPagination(null);
     } finally {
       setLoading(false);
     }

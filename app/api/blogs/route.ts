@@ -3,6 +3,12 @@ import { db } from '@/lib/db';
 
 export async function GET(request: Request) {
   try {
+    console.log('Starting blogs API call...');
+    
+    // Test database connection first
+    await db.query('SELECT 1');
+    console.log('Database connection successful');
+
     // Create blogs table if it doesn't exist
     await db.query(`
       CREATE TABLE IF NOT EXISTS blogs (
@@ -14,28 +20,31 @@ export async function GET(request: Request) {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
+    console.log('Table check complete');
 
     // Get pagination parameters from URL
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '15');
+    const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
+    const limit = Math.min(50, Math.max(1, parseInt(searchParams.get('limit') || '15')));
     const offset = (page - 1) * limit;
 
     // Get total count of blogs
     const countResult = await db.query('SELECT COUNT(*) as total FROM blogs');
     const total = parseInt(countResult.rows[0].total);
+    console.log(`Found ${total} total blogs`);
 
     // Get paginated blogs
     const result = await db.query(
-      'SELECT * FROM blogs ORDER BY created_at DESC LIMIT $1 OFFSET $2',
+      'SELECT slug, title, body, image, created_at FROM blogs ORDER BY created_at DESC LIMIT $1 OFFSET $2',
       [limit, offset]
     );
+    console.log(`Retrieved ${result.rows.length} blogs for page ${page}`);
 
-    const blogs = result.rows.map(blog => ({
+    const blogs = result.rows.map((blog: any) => ({
       slug: blog.slug,
       title: blog.title,
       body: blog.body,
-      image: blog.image,
+      image: blog.image || '/JOURNAL.png', // Fallback image
     }));
 
     // Calculate pagination info
@@ -43,7 +52,7 @@ export async function GET(request: Request) {
     const hasNextPage = page < totalPages;
     const hasPrevPage = page > 1;
 
-    return NextResponse.json({
+    const response = {
       blogs,
       pagination: {
         currentPage: page,
@@ -53,11 +62,25 @@ export async function GET(request: Request) {
         hasNextPage,
         hasPrevPage,
       },
-    });
+    };
+
+    console.log('Sending response:', JSON.stringify(response, null, 2));
+    return NextResponse.json(response);
   } catch (error) {
-    console.error('[GET_BLOGS]', error);
+    console.error('[GET_BLOGS] Full error details:', {
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+      detail: error.detail
+    });
+    
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        details: error.message,
+        blogs: [],
+        pagination: null
+      },
       { status: 500 }
     );
   }
@@ -87,7 +110,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    const updatedBlog = {
+    const updatedBlog: any = {
       slug: result.rows[0].slug,
       title: result.rows[0].title,
       body: result.rows[0].body,
