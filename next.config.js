@@ -14,8 +14,6 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['next/font'],
   },
-  // Disable telemetry
-  telemetry: false,
   // Configure allowed image domains for existing blog posts
   images: {
     remotePatterns: [
