@@ -5,14 +5,23 @@ let isConnected = false;
 
 const initializePool = () => {
   if (!pool) {
+    const databaseUrl = process.env.DATABASE_URL;
+    
+    if (!databaseUrl) {
+      console.error('❌ DATABASE_URL environment variable is not set');
+      throw new Error('DATABASE_URL is required');
+    }
+    
+    console.log('🔗 Initializing Neon database connection...');
+    
     pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: process.env.DATABASE_URL?.includes('sslmode=require') ? undefined : {
+      connectionString: databaseUrl,
+      ssl: {
         rejectUnauthorized: false,
       },
       max: 10,
       idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 3000,
+      connectionTimeoutMillis: 10000,
     });
   }
   return pool;
@@ -23,10 +32,13 @@ const testConnection = async (): Promise<boolean> => {
     const testPool = initializePool();
     await testPool.query('SELECT 1');
     isConnected = true;
+    console.log('✅ Database connection successful');
     return true;
   } catch (error) {
     isConnected = false;
-    console.log('🔌 Database connection test failed:', error instanceof Error ? error.message : 'Unknown error');
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('🔌 Database connection test failed:', errorMessage);
+    console.error('🔗 DATABASE_URL:', process.env.DATABASE_URL ? 'Set' : 'NOT SET');
     return false;
   }
 };
@@ -40,20 +52,10 @@ export const db = {
       await testConnection();
     }
     
-    // If not connected, return empty results without errors
+    // If not connected, throw error instead of silent fallback
     if (!isConnected) {
-      console.log('🔄 Database offline - returning empty results');
-      if (text.includes('SELECT') && text.includes('blogs')) {
-        return { 
-          rows: text.includes('COUNT(*)') ? [{ total: 0 }] : [],
-          rowCount: 0
-        };
-      }
-      if (text.includes('CREATE TABLE')) {
-        return { rows: [], rowCount: 0 };
-      }
-      // For other queries, return empty result
-      return { rows: [], rowCount: 0 };
+      console.error('🔄 Database offline - cannot execute query');
+      throw new Error('Database connection failed. Please check DATABASE_URL environment variable.');
     }
     
     try {
@@ -64,23 +66,13 @@ export const db = {
       return result;
     } catch (error) {
       const duration = Date.now() - start;
-      console.error(`❌ Query failed after ${duration}ms:`, error instanceof Error ? error.message : 'Unknown error');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`❌ Query failed after ${duration}ms:`, errorMessage);
       
-      // Mark as disconnected and return empty results
+      // Mark as disconnected and throw error
       isConnected = false;
-      
-      if (text.includes('SELECT') && text.includes('blogs')) {
-        return { 
-          rows: text.includes('COUNT(*)') ? [{ total: 0 }] : [],
-          rowCount: 0
-        };
-      }
-      
-      if (text.includes('CREATE TABLE')) {
-        return { rows: [], rowCount: 0 };
-      }
-      
-      return { rows: [], rowCount: 0 };
+      console.error('❌ Query failed, marking connection as lost');
+      throw new Error(`Database query failed: ${errorMessage}`);
     }
   },
   
