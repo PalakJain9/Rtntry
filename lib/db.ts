@@ -7,7 +7,7 @@ const initializePool = () => {
   if (!pool) {
     pool = new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: {
+      ssl: process.env.DATABASE_URL?.includes('sslmode=require') ? undefined : {
         rejectUnauthorized: false,
       },
       max: 10,
@@ -26,7 +26,7 @@ const testConnection = async (): Promise<boolean> => {
     return true;
   } catch (error) {
     isConnected = false;
-    console.log('🔌 Database connection test failed:', error.message);
+    console.log('🔌 Database connection test failed:', error instanceof Error ? error.message : 'Unknown error');
     return false;
   }
 };
@@ -64,7 +64,7 @@ export const db = {
       return result;
     } catch (error) {
       const duration = Date.now() - start;
-      console.error(`❌ Query failed after ${duration}ms:`, error.message);
+      console.error(`❌ Query failed after ${duration}ms:`, error instanceof Error ? error.message : 'Unknown error');
       
       // Mark as disconnected and return empty results
       isConnected = false;
